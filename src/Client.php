@@ -325,7 +325,7 @@ class Client
         );
         $body = json_decode($response->getBody()->getContents(), true);
         if (isset($body['errorCode'])) {
-            throw new EtcdException($body['message'], $body['errorCode']);
+            throw new KeyNotFoundException($body['message'], $body['errorCode']);
         }
         return $body;
     }
