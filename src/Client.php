@@ -16,12 +16,11 @@ class Client
     const DEFAULT_API_VERSION = 'v2';
 
     private $server;
-
     private $http;
-    
     private $apiversion;
-
     private $root;
+    private $dirs;
+    private $values;
     
     public function __construct($server = self::DEFAULT_SERVER, $options = array(), $version = self::DEFAULT_API_VERSION)
     {
@@ -29,8 +28,10 @@ class Client
         $this->root = self::DEFAULT_ROOT;
         $this->apiversion = $version;
 
-        $options = array_replace_recursive(['base_uri' => $this->server], $options);
-        $this->http = new GuzzleClient($options);
+        $this->http = new GuzzleClient(array_replace_recursive([
+            'base_uri' => $this->server,
+            'http_errors' => false
+        ], $options));
     }
 
     /**
@@ -85,7 +86,7 @@ class Client
     public function set($key, $value, $ttl = null, $condition = array())
     {
         $data = array('value' => $value);
-        
+
         if ($ttl) {
             $data['ttl'] = $ttl;
         }
@@ -350,11 +351,6 @@ class Client
         $iterator = new RecursiveArrayIterator($data);
         return $this->traversalDir($iterator);
     }
-
-    private $dirs = array();
-    
-    private $values = array();
-
 
     /**
      * Traversal the directory to get the keys.
