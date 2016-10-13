@@ -15,7 +15,6 @@ class Client
     const DEFAULT_SERVER = 'http://127.0.0.1:2379';
     const DEFAULT_API_VERSION = 'v2';
 
-    private $server;
     private $http;
     private $apiversion;
     private $root;
@@ -24,13 +23,12 @@ class Client
     
     public function __construct($server = self::DEFAULT_SERVER, $options = array(), $version = self::DEFAULT_API_VERSION, GuzzleClient $guzzleClient = null)
     {
-        $this->server = $server ? rtrim($server, '/') : self::DEFAULT_SERVER;
         $this->root = self::DEFAULT_ROOT;
         $this->apiversion = $version;
 
         if (is_null($guzzleClient)) {
             $guzzleClient = new GuzzleClient(array_replace_recursive([
-                'base_uri' => $this->server,
+                'base_uri' => $server ? rtrim($server, '/') : self::DEFAULT_SERVER,
                 'http_errors' => false
             ], $options));
         }
