@@ -22,16 +22,22 @@ class Client
     private $dirs;
     private $values;
     
-    public function __construct($server = self::DEFAULT_SERVER, $options = array(), $version = self::DEFAULT_API_VERSION)
+    public function __construct($server = self::DEFAULT_SERVER, $options = array(), $version = self::DEFAULT_API_VERSION, GuzzleClient $guzzleClient = null)
     {
         $this->server = $server ? rtrim($server, '/') : self::DEFAULT_SERVER;
         $this->root = self::DEFAULT_ROOT;
         $this->apiversion = $version;
 
-        $this->http = new GuzzleClient(array_replace_recursive([
-            'base_uri' => $this->server,
-            'http_errors' => false
-        ], $options));
+        if (is_null($guzzleClient)) {
+            $guzzleClient = new GuzzleClient(array_replace_recursive([
+                'base_uri' => $this->server,
+                'http_errors' => false
+            ], $options));
+        }
+        if (is_null($guzzleClient->getConfig('base_uri'))) {
+            throw new EtcdException('Base URI not set at Guzzle Client', 205);
+        }
+        $this->http = $guzzleClient;
     }
 
     /**
