@@ -7,7 +7,6 @@ use LinkORB\Component\Etcd\Exception\EtcdException;
 use LinkORB\Component\Etcd\Exception\KeyExistsException;
 use LinkORB\Component\Etcd\Exception\KeyNotFoundException;
 use RecursiveArrayIterator;
-use stdClass;
 
 class Client
 {
@@ -309,7 +308,7 @@ class Client
     /**
      * remove a key
      * @param string $key
-     * @return array|stdClass
+     * @return array
      * @throws EtcdException
      */
     public function rm($key)
