@@ -11,18 +11,52 @@ use stdClass;
 
 class Client
 {
+    /**
+     * Default settings
+     */
     const DEFAULT_ROOT = '';
     const DEFAULT_SERVER = 'http://127.0.0.1:2379';
     const DEFAULT_API_VERSION = 'v2';
 
+    /**
+     * @var GuzzleClient
+     */
     private $http;
+
+    /**
+     * @var string
+     */
     private $apiversion;
+
+    /**
+     * @var string
+     */
     private $root;
+
+    /**
+     * @var array
+     */
     private $dirs;
+
+    /**
+     * @var array
+     */
     private $values;
-    
-    public function __construct($server = self::DEFAULT_SERVER, $options = array(), $version = self::DEFAULT_API_VERSION, GuzzleClient $guzzleClient = null)
-    {
+
+    /**
+     * Client constructor.
+     * @param string $server
+     * @param array $options
+     * @param string $version
+     * @param GuzzleClient|null $guzzleClient
+     * @throws EtcdException
+     */
+    public function __construct(
+        $server = self::DEFAULT_SERVER,
+        $options = array(),
+        $version = self::DEFAULT_API_VERSION,
+        GuzzleClient $guzzleClient = null
+    ) {
         $this->root = self::DEFAULT_ROOT;
         $this->apiversion = $version;
 
@@ -64,7 +98,16 @@ class Client
      */
     private function buildKeyUri($key)
     {
-        return str_replace('//', '/', sprintf('/%s/keys/%s/%s', $this->apiversion, trim($this->root, '/'), trim($key, '/')));
+        return str_replace(
+            '//',
+            '/',
+            sprintf(
+                '/%s/keys/%s/%s',
+                $this->apiversion,
+                trim($this->root, '/'),
+                trim($key, '/')
+            )
+        );
     }
 
     /**
@@ -85,7 +128,7 @@ class Client
      * @param string $value
      * @param int $ttl
      * @param array $condition
-     * @return stdClass
+     * @return array
      */
     public function set($key, $value, $ttl = null, $condition = array())
     {
@@ -380,10 +423,10 @@ class Client
         }
         return $this->dirs;
     }
-    
+
     /**
      * Get all key-value pair that the key is not directory.
-     * @param string $key
+     * @param string $root
      * @param boolean $recursive
      * @param string $key
      * @return array
@@ -403,6 +446,7 @@ class Client
      * @param string $dir
      * @param int $ttl
      * @return array $body
+     * @throws EtcdException
      */
     public function mkdirWithInOrderKey($dir, $ttl = 0)
     {
@@ -434,7 +478,7 @@ class Client
      * @param string $value
      * @param int $ttl
      * @param array $condition
-     * @return array $body
+     * @throws EtcdException
      */
     public function setWithInOrderKey($dir, $value, $ttl = 0, $condition = array())
     {
@@ -454,5 +498,4 @@ class Client
             throw new EtcdException($body['message'], $body['errorCode']);
         }
     }
-
 }
