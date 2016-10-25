@@ -1,5 +1,5 @@
 {
-    "name": "binwiederhier/etcd-php",
+    "name": "avariya/etcd-php",
     "description": "Etcd client library for PHP",
     "homepage": "http://www.github.com/linkorb/etcd-php",
     "keywords": ["php", "etcd", "api", "distributed", "configuration"],
@@ -13,7 +13,6 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "symfony/console": "^2.4 || ^3.0",
         "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
