@@ -6,10 +6,11 @@ use GuzzleHttp\RequestOptions;
 use LinkORB\Component\Etcd\Exception\EtcdException;
 use LinkORB\Component\Etcd\Exception\KeyExistsException;
 use LinkORB\Component\Etcd\Exception\KeyNotFoundException;
+use LinkORB\Component\Etcd\Interfaces\EtcdClientInterface;
 use Psr\Http\Message\ResponseInterface;
 use RecursiveArrayIterator;
 
-class GuzzlessClient
+class GuzzlessClient implements EtcdClientInterface
 {
     /**
      * Default settings
@@ -114,12 +115,7 @@ class GuzzlessClient
     }
 
     /**
-     * Set the value of a key
-     * @param string $key
-     * @param string $value
-     * @param int $ttl
-     * @param array $condition
-     * @return array
+     * @inheritdoc
      */
     public function set($key, $value, $ttl = null, $condition = array())
     {
@@ -140,11 +136,7 @@ class GuzzlessClient
     }
 
     /**
-     * Retrieve the value of a key
-     * @param string $key
-     * @param array $flags the extra query params
-     * @return array
-     * @throws KeyNotFoundException
+     * @inheritdoc
      */
     public function getNode($key, array $flags = null)
     {
@@ -165,11 +157,7 @@ class GuzzlessClient
     }
 
     /**
-     * Retrieve the value of a key
-     * @param string $key
-     * @param array $flags the extra query params
-     * @return string the value of the key.
-     * @throws KeyNotFoundException
+     * @inheritdoc
      */
     public function get($key, array $flags = null)
     {
@@ -203,12 +191,7 @@ class GuzzlessClient
     }
 
     /**
-     * make a new directory
-     *
-     * @param string $key
-     * @param int $ttl
-     * @return array $body
-     * @throws KeyExistsException
+     * @inheritdoc
      */
     public function mkdir($key, $ttl = 0)
     {
@@ -236,13 +219,7 @@ class GuzzlessClient
 
 
     /**
-     * Update an existing key with a given value.
-     * @param string $key
-     * @param string $value
-     * @param int $ttl
-     * @param array $condition The extra condition for updating
-     * @return array $body
-     * @throws KeyNotFoundException
+     * @inheritdoc
      */
     public function update($key, $value, $ttl = 0, $condition = array())
     {
@@ -294,10 +271,7 @@ class GuzzlessClient
 
 
     /**
-     * remove a key
-     * @param string $key
-     * @return array
-     * @throws EtcdException
+     * @inheritdoc
      */
     public function rm($key)
     {
@@ -340,11 +314,7 @@ class GuzzlessClient
     }
 
     /**
-     * Retrieve a directory
-     * @param string $key
-     * @param boolean $recursive
-     * @return mixed
-     * @throws KeyNotFoundException
+     * @inheritdoc
      */
     public function listDir($key = '/', $recursive = false)
     {
@@ -414,11 +384,7 @@ class GuzzlessClient
     }
 
     /**
-     * Get all key-value pair that the key is not directory.
-     * @param string $root
-     * @param boolean $recursive
-     * @param string $key
-     * @return array
+     * @inheritdoc
      */
     public function getKeysValue($root = '/', $recursive = true, $key = null)
     {

@@ -23,6 +23,5 @@
             "LinkORB\\Component\\Etcd\\": "src/"
         }
     },
-    "bin": ["bin/etcd-php"],
     "license": "MIT"
 }
