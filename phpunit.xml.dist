@@ -10,7 +10,7 @@
 
     <testsuites>
         <testsuite>
-            <directory suffix="Test.php">./tests/LinkORB/Tests</directory>
+            <directory suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>
 
