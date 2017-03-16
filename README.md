@@ -19,12 +19,9 @@ cd etcd
 ./bin/etcd
 ````
 
-## Brought to you by the LinkORB Engineering team
+## Brought to you by Printdeal Engineering team
 
-Check out our other projects at [linkorb.com/engineering](http://www.linkorb.com/engineering).
-
-Btw, we're hiring!
-
+This is a contribution on top of the earlier work of the Linkorb Engineering Team
 
 ## Usage
 
