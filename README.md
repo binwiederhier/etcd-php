@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/printdeal/etcd-php.png?branch=master)](https://travis-ci.org/printdeal/etcd-php)
-[![Latest Stable Version](https://poser.pugx.org/linkorb/etcd-php/v/stable.png)](https://packagist.org/packages/linkorb/etcd-php)
-[![Total Downloads](https://poser.pugx.org/linkorb/etcd-php/downloads.png)](https://packagist.org/packages/linkorb/etcd-php)
-[![Latest Unstable Version](https://poser.pugx.org/linkorb/etcd-php/v/unstable.png)](https://packagist.org/packages/linkorb/etcd-php) 
-[![License](https://poser.pugx.org/linkorb/etcd-php/license.png)](https://packagist.org/packages/linkorb/etcd-php)
+[![Latest Stable Version](https://poser.pugx.org/linkorb/etcd-php/v/stable.png)](https://packagist.org/packages/printdeal/etcd-php)
+[![Total Downloads](https://poser.pugx.org/linkorb/etcd-php/downloads.png)](https://packagist.org/packages/printdeal/etcd-php)
+[![Latest Unstable Version](https://poser.pugx.org/printdeal/etcd-php/v/unstable.png)](https://packagist.org/packages/printdeal/etcd-php) 
+[![License](https://poser.pugx.org/linkorb/etcd-php/license.png)](https://packagist.org/packages/printdeal/etcd-php)
 
 # Etcd client library for PHP
 
