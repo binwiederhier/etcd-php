@@ -1,7 +1,7 @@
 {
-    "name": "avariya/etcd-php",
+    "name": "printdeal/etcd-php",
     "description": "Etcd client library for PHP",
-    "homepage": "http://www.github.com/linkorb/etcd-php",
+    "homepage": "http://www.github.com/printdeal/etcd-php",
     "keywords": ["php", "etcd", "api", "distributed", "configuration"],
     "type": "library",
     "authors": [
