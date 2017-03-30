@@ -13,6 +13,12 @@ use RecursiveArrayIterator;
 class GuzzlessClient implements EtcdClientInterface
 {
     /**
+     * Header options
+     */
+    const HEADER_CONTENT_TYPE = 'Content-Type';
+    const CONTENT_TYPE_FORM_URLENCODED = 'application/x-www-form-urlencoded';
+
+    /**
      * Default settings
      */
     const DEFAULT_ROOT = '';
@@ -460,7 +466,7 @@ class GuzzlessClient implements EtcdClientInterface
      */
     protected function getHeaders()
     {
-        return $this->getHeaders();
+        return [self::HEADER_CONTENT_TYPE => self::CONTENT_TYPE_FORM_URLENCODED];
     }
 
     /**
